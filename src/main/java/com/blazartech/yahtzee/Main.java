@@ -5,23 +5,17 @@
  */
 package com.blazartech.yahtzee;
 
-import java.awt.BorderLayout;
-import java.awt.Frame;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  *
  * @author aar1069
  */
+@SpringBootApplication
 public class Main {
     
     public static void main(String... args) {
-        Frame mainWindow = new Frame("Yahtzee");
-        mainWindow.setLayout(new BorderLayout());
-        GameDice dice = new GameDice();
-        ScoreCard scoreCard = new ScoreCard(dice);
-        mainWindow.add(dice, BorderLayout.NORTH);
-        mainWindow.add(scoreCard, BorderLayout.CENTER);
-        mainWindow.pack();
-        mainWindow.setVisible(true);
+        new SpringApplicationBuilder(Main.class).headless(false).run(args);
     }
 }
