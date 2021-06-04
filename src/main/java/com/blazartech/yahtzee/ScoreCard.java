@@ -10,16 +10,18 @@ import com.blazartech.yahtzee.Scorer.FullHouseScorer;
 import com.blazartech.yahtzee.Scorer.NofaKindScorer;
 import com.blazartech.yahtzee.Scorer.StraightScorer;
 import com.blazartech.yahtzee.Scorer.YahtzeeScorer;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /** Implement the score card. */
-public class ScoreCard extends Panel {
+public class ScoreCard extends JPanel {
     /** Represent a section of the score card. */
-    abstract public class ScoreCardSection extends Panel {
+    abstract public class ScoreCardSection extends JPanel {
         /** the array of lines in the section. */
         private ScorePanel[] lines;
 
         /** The label in which to display the total score. */
-        Label score_display;
+        JLabel score_display;
 
         /** A reference to the containing ScoreCard. */
         ScoreCard card;
@@ -49,7 +51,7 @@ public class ScoreCard extends Panel {
             Panel score_panel = new Panel(); add(score_panel);
             score_panel.setLayout(new BorderLayout());
             Label text = new Label("Score:"); score_panel.add(text, BorderLayout.WEST);
-            score_display = new Label("0"); score_panel.add(score_display,
+            score_display = new JLabel("0"); score_panel.add(score_display,
                                                             BorderLayout.EAST);
         }
 
@@ -132,7 +134,7 @@ public class ScoreCard extends Panel {
         setLayout(new BorderLayout());
 
         // Add a panel for the mini-score cards.
-        Panel cards_panel = new Panel(); add(cards_panel, BorderLayout.CENTER);
+        JPanel cards_panel = new JPanel(); add(cards_panel, BorderLayout.CENTER);
         cards_panel.setLayout(new BorderLayout());
 
         // build the two sections.
@@ -140,8 +142,8 @@ public class ScoreCard extends Panel {
         lower = new LowerScoreCardSection(dice, this); cards_panel.add(lower, BorderLayout.EAST);
 
         // build the score display.
-        Panel score_panel = new Panel(); add(score_panel, BorderLayout.SOUTH);
-        Label score_label = new Label("Total score: ");
+        JPanel score_panel = new JPanel(); add(score_panel, BorderLayout.SOUTH);
+        JLabel score_label = new JLabel("Total score: ");
         score_panel.add(score_label);
         total_score_display = new Label("000");
         score_panel.add(total_score_display);

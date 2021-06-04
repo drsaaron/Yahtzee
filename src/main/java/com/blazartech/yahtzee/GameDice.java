@@ -16,13 +16,15 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /** This class will store an array of Die object, representing the game
     dice for Yahtzee.  The object is derived from Panel, so the dice are
     automatically drawn.  A roll button is provided which will roll the
     dice, ensuring that only 3 rolls are made before being reset. */
 
-public class GameDice extends Panel {
+public class GameDice extends JPanel {
     /** A random number generator. */
     private static final Random rgen = new Random();
 
@@ -78,8 +80,8 @@ public class GameDice extends Panel {
         /* We want a panel to store the actual dice, and one for control
            buttons. */
         setLayout(new BorderLayout());
-        Panel dice_panel = new Panel(); add(dice_panel, BorderLayout.NORTH);
-        Panel control_panel = new Panel(); add(control_panel, BorderLayout.SOUTH);
+        JPanel dice_panel = new JPanel(); add(dice_panel, BorderLayout.NORTH);
+        JPanel control_panel = new JPanel(); add(control_panel, BorderLayout.SOUTH);
 
         // Build the dice.
         int i;
@@ -89,7 +91,7 @@ public class GameDice extends Panel {
         }
 
         // Build the buttons.
-        Button roll_button = new Button("roll");
+        JButton roll_button = new JButton("roll");
         control_panel.add(roll_button);
         roll_button.addMouseListener(new MouseAdapter() {
             @Override
@@ -98,7 +100,7 @@ public class GameDice extends Panel {
             }
         });
 
-        Button keep_button = new Button("keep all");
+        JButton keep_button = new JButton("keep all");
         control_panel.add(keep_button);
         keep_button.addMouseListener(new MouseAdapter() {
             @Override
@@ -107,7 +109,7 @@ public class GameDice extends Panel {
             }
         });
 
-        Button clear_button = new Button("clear");
+        JButton clear_button = new JButton("clear");
         control_panel.add(clear_button);
         clear_button.addMouseListener(new MouseAdapter() {
             @Override

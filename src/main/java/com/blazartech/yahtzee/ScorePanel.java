@@ -6,10 +6,13 @@ package com.blazartech.yahtzee;
 import java.awt.*;
 import java.awt.event.*;
 import com.blazartech.yahtzee.Scorer.Scorer;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /** A class to represent a single score.  It will draw itself in a
     Panel. */
-public class ScorePanel extends Panel implements MouseListener {
+public class ScorePanel extends JPanel implements MouseListener {
     /** Has a score already been entered? */
     private boolean score_entered;
 
@@ -20,7 +23,7 @@ public class ScorePanel extends Panel implements MouseListener {
     private final Scorer scorer;
 
     /** A Label widget to display the score. */
-    private final Label score_display;
+    private final JLabel score_display;
 
     /** An internal reference to the game dice. */
     private final GameDice dice;
@@ -48,13 +51,13 @@ public class ScorePanel extends Panel implements MouseListener {
         setLayout(new BorderLayout());
 
         // Build the pushbutton.
-        Button b = new Button();
-        b.setFont(LABEL_FONT); b.setLabel(label);
+        JButton b = new JButton(label);
+        b.setFont(LABEL_FONT); 
         add(b, BorderLayout.WEST);
         b.addMouseListener(this);
 
         // Build the label.
-        score_display = new Label();
+        score_display = new JLabel();
         add(score_display, BorderLayout.EAST);
         score_display.setBackground(Color.white);
     }

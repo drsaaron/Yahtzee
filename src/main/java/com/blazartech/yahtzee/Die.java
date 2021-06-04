@@ -5,17 +5,19 @@ package com.blazartech.yahtzee;
 
 import java.awt.*;
 import java.util.Random;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
 /**
  * The Die class will represent a single die for the Yahtzee applet. The class
  * will draw itself on the screen and make the value and whether or not it is a
  * keeper available.
  */
-public class Die extends Panel {
+public class Die extends JPanel {
 
     // data.
-    private final Panel upper, lower;
-    private final Checkbox cbox;
+    private final JPanel upper, lower;
+    private final JCheckBox cbox;
     private int value;
     private final Dot dots[][] = new Dot[3][3];
     private final Random rgen;
@@ -78,14 +80,14 @@ public class Die extends Panel {
         setLayout(new GridLayout(2, 1));
 
         // Set each row to be a panel.
-        upper = new Panel();
+        upper = new JPanel();
         add(upper);
         upper.setBackground(BGCOLOR);
-        lower = new Panel();
+        lower = new JPanel();
         add(lower);
 
         // add the checkbox.
-        cbox = new Checkbox();
+        cbox = new JCheckBox();
         lower.add(cbox);
 
         /* The upper panel will have a grid layout, with 3 rows and three
@@ -105,7 +107,7 @@ public class Die extends Panel {
      * @return 
      */
     public boolean is_keeper() {
-        return cbox.getState();
+        return cbox.isSelected();
     }
 
     /**
@@ -113,7 +115,7 @@ public class Die extends Panel {
      * @param s
      */
     public void setStatus(boolean s) {
-        cbox.setState(s);
+        cbox.setSelected(s);
     }
 
     /**

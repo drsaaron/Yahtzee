@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -27,8 +29,8 @@ public class YahtzeeWindowCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info("opening window");
 
-        Frame mainWindow = new Frame("Yahtzee");
-        mainWindow.addWindowListener(new WindowCloseListener(mainWindow));
+        JFrame mainWindow = new JFrame("Yahtzee");
+        mainWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         mainWindow.setLayout(new BorderLayout());
         GameDice dice = new GameDice();
         ScoreCard scoreCard = new ScoreCard(dice);
