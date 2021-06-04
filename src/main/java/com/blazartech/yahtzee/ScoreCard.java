@@ -62,11 +62,7 @@ public class ScoreCard extends JPanel {
             super();
             card = c;
             
-            c.addPropertyChangeListener("gameDice", (PropertyChangeEvent arg0) -> {
-                for (ScorePanel c1 : lines) {
-                    c1.setGameDice((GameDice) arg0.getNewValue());
-                }
-            });
+            c.addPropertyChangeListener("gameDice", (PropertyChangeEvent arg0) -> setGameDice((GameDice) arg0.getNewValue()));
         }
 
         // calculate the score for the section.
@@ -82,6 +78,13 @@ public class ScoreCard extends JPanel {
         public void updateScore() {
             score_display.setText(Integer.toString(getScore()));
             card.showScore();  // update the card score.
+        }
+        
+        private GameDice gameDice;
+        public void setGameDice(GameDice gameDice) {
+            GameDice oldDice = this.gameDice;
+            this.gameDice = gameDice;
+            firePropertyChange("gameDice", oldDice, gameDice);
         }
     };
 

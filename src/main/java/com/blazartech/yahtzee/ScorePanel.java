@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -66,6 +67,10 @@ public class ScorePanel extends JPanel implements MouseListener {
         score_display = new JLabel();
         add(score_display, BorderLayout.EAST);
         score_display.setBackground(Color.white);
+        
+        sec.addPropertyChangeListener("gameDice", (PropertyChangeEvent e) -> {
+            setGameDice((GameDice) e.getNewValue());
+        });
     }
 
     /** Determine the score and display it in the display label. */
