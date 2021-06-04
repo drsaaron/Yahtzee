@@ -26,6 +26,7 @@ public class ErrorWindow extends Dialog {
         // Add an "OK" button.
         Button ok = new Button("OK");
         ok.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 dispose();
             }

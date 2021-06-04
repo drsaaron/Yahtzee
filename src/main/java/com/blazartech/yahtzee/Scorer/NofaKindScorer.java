@@ -9,11 +9,12 @@ import com.blazartech.yahtzee.GameDice;
 /** Determine 3, 4, and 5 of a kind.  The score will be the sum
     of all dice, if valid. */
 public class NofaKindScorer extends ScorerBase implements Scorer {
-    private int ndice;
+    private final int ndice;
     public NofaKindScorer(int n) {
         super();
         ndice = n;
     }
+    @Override
     public int score(GameDice dice) {
         Die[] keepers = dice.getKeepers();
 

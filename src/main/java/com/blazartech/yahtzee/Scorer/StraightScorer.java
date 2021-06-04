@@ -9,12 +9,13 @@ import com.blazartech.yahtzee.GameDice;
 /** Score straights. */
 public class StraightScorer extends ScorerBase implements Scorer {
     /** The length of the straight. */
-    private int length;
+    private final int length;
     public StraightScorer(int l) {
         super();
         length = l;
     }
 
+    @Override
     public int score(GameDice dice) {
         // get the keepers.
         Die[] keepers = dice.getKeepers();

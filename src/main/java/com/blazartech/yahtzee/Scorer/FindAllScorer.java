@@ -9,17 +9,18 @@ import com.blazartech.yahtzee.GameDice;
 /** A scorer for the upper section, i.e. one which finds all elements
     with the specified value and sums them. */
 public class FindAllScorer extends ScorerBase implements Scorer {
-    private int value;
+    private final int value;
     public FindAllScorer(int v) {
         super();
         value = v;
     }
 
+    @Override
     public int score(GameDice dice) {
         int sum = 0;
         Die[] keepers = dice.getKeepers();
-        for (int i = 0; i < keepers.length; i++) {
-            if (keepers[i].currValue() == value) {
+        for (Die keeper : keepers) {
+            if (keeper.currValue() == value) {
                 sum += value;
             }
         }

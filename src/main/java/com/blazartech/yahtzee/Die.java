@@ -14,11 +14,11 @@ import java.util.Random;
 public class Die extends Panel {
 
     // data.
-    private Panel upper, lower;
-    private Checkbox cbox;
+    private final Panel upper, lower;
+    private final Checkbox cbox;
     private int value;
-    private Dot dots[][] = new Dot[3][3];
-    private Random rgen;
+    private final Dot dots[][] = new Dot[3][3];
+    private final Random rgen;
     public final Color BGCOLOR = Color.white;
 
     /**
@@ -58,6 +58,7 @@ public class Die extends Panel {
             draw(false);
         }
 
+        @Override
         public void paint(Graphics g) {
             draw(dstate);
         }
@@ -101,6 +102,7 @@ public class Die extends Panel {
 
     /**
      * Is the die a keeper?
+     * @return 
      */
     public boolean is_keeper() {
         return cbox.getState();
@@ -108,6 +110,7 @@ public class Die extends Panel {
 
     /**
      * Set the keeper status.
+     * @param s
      */
     public void setStatus(boolean s) {
         cbox.setState(s);
@@ -115,6 +118,7 @@ public class Die extends Panel {
 
     /**
      * What is the current value?
+     * @return 
      */
     public int currValue() {
         return value;
@@ -122,7 +126,9 @@ public class Die extends Panel {
 
     /**
      * Draw the die.
+     * @param g
      */
+    @Override
     public void paint(Graphics g) {
         draw();
     }
@@ -181,12 +187,14 @@ public class Die extends Panel {
 
     /**
      * Equals operators.
+     * @param d
+     * @return 
      */
     public boolean equals(Die d) {
         return currValue() == d.currValue();
     }
 
     public boolean equals(Integer i) {
-        return currValue() == i.intValue();
+        return currValue() == i;
     }
 };

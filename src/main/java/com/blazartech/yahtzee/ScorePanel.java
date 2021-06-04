@@ -17,13 +17,13 @@ public class ScorePanel extends Panel implements MouseListener {
     private int score;
 
     /** The Scorer object used to determine the score. */
-    private Scorer scorer;
+    private final Scorer scorer;
 
     /** A Label widget to display the score. */
-    private Label score_display;
+    private final Label score_display;
 
     /** An internal reference to the game dice. */
-    private GameDice dice;
+    private final GameDice dice;
 
     /** Each ScorePanel object is contained inside a ScoreCard.ScoreCardSection
         object.  Store a reference to this object so that when a score is taken,
@@ -31,7 +31,7 @@ public class ScorePanel extends Panel implements MouseListener {
     ScoreCard.ScoreCardSection section;
 
     /** The font used to display the label text. */
-    private static final Font label_font = new Font("Courier", Font.PLAIN, 10);
+    private static final Font LABEL_FONT = new Font("Courier", Font.PLAIN, 10);
 
     // constructor.
     public ScorePanel(String label, Scorer s, GameDice d, ScoreCard.ScoreCardSection sec) {
@@ -49,7 +49,7 @@ public class ScorePanel extends Panel implements MouseListener {
 
         // Build the pushbutton.
         Button b = new Button();
-        b.setFont(label_font); b.setLabel(label);
+        b.setFont(LABEL_FONT); b.setLabel(label);
         add(b, BorderLayout.WEST);
         b.addMouseListener(this);
 
@@ -68,6 +68,7 @@ public class ScorePanel extends Panel implements MouseListener {
     }
 
     // Handle mouse clicks.
+    @Override
     public void mouseClicked(MouseEvent e) {
           if (score_entered) {  // Uh oh, somebody is cheating...
                 ErrorWindow ewin =
@@ -87,11 +88,15 @@ public class ScorePanel extends Panel implements MouseListener {
     }
 
     // handle the other mouse events.
+    @Override
     public void mousePressed(MouseEvent e) {}
+    @Override
     public void mouseReleased(MouseEvent e) {}
+    @Override
     public void mouseEntered(MouseEvent e) {
         scoreAndDisplay();
     }
+    @Override
     public void mouseExited(MouseEvent e) {
         if (!score_entered) {
             score = 0;
@@ -99,13 +104,16 @@ public class ScorePanel extends Panel implements MouseListener {
         }
     }
 
-    /** Get the current score. */
+    /** Get the current score.
+     * @return  */
     public int getScore() { return score; }
 
-    /** Get the current score entry state. */
+    /** Get the current score entry state.
+     * @return  */
     public boolean getState() { return score_entered; }
 
-    /** Set the current score entry state. */
+    /** Set the current score entry state.
+     * @param s */
     public void setState(boolean s) {
         score_entered = s;
         if (s == false) { score = 0; }

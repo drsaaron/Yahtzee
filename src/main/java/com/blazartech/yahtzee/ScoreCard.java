@@ -26,22 +26,23 @@ public class ScoreCard extends Panel {
 
         /** Reset the section. */
         public void reset() {
-            for (int i = 0; i < lines.length; i++) {
-                lines[i].reset();
+            for (ScorePanel line : lines) {
+                line.reset();
             }
             updateScore();
         }
 
-        /** Set the lines array. */
-        protected void setLines(ScorePanel[] l) {
+        /** Set the lines array.
+         * @param l */
+        protected final void setLines(ScorePanel[] l) {
             lines = l;
 
             // set the layout to be l.length by 1.
             setLayout(new GridLayout(lines.length + 1, 1));
 
             // add each line.
-            for (int i = 0; i < lines.length; i++) {
-                add(lines[i]);
+            for (ScorePanel line : lines) {
+                add(line);
             }
 
             // Add a score line.
@@ -61,8 +62,8 @@ public class ScoreCard extends Panel {
         // calculate the score for the section.
         public int getScore() {
             int score = 0;
-            for (int i = 0; i < lines.length; i++) {
-                score += lines[i].getScore();
+            for (ScorePanel line : lines) {
+                score += line.getScore();
             }
             return score;
         }
@@ -88,6 +89,8 @@ public class ScoreCard extends Panel {
             };
             setLines(l);
         }
+        
+        @Override
         public int getScore() {
             int score = super.getScore();
             if (score >= 63) score += 35;
@@ -112,8 +115,9 @@ public class ScoreCard extends Panel {
         }
     };
 
+
     /** The upper and lower sections of the score card. */
-    private ScoreCardSection upper, lower;
+    private final ScoreCardSection upper, lower;
 
     /** Label in which to display the total score. */
     Label total_score_display;
@@ -143,7 +147,8 @@ public class ScoreCard extends Panel {
         score_panel.add(total_score_display);
     }
 
-    /** get the total score. */
+    /** get the total score.
+     * @return  */
     public int getScore() { return upper.getScore() + lower.getScore(); }
 
     /** display the score */

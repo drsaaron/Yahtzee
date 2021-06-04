@@ -9,6 +9,7 @@ import com.blazartech.yahtzee.GameDice;
 /** Score a full house. */
 public class FullHouseScorer extends ScorerBase implements Scorer {
     public FullHouseScorer() { super(); }
+    @Override
     public int score(GameDice dice) {
         // get the all the dice.
         Die[] keepers = dice.getDice();

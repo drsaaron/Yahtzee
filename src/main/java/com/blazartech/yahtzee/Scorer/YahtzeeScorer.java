@@ -12,6 +12,7 @@ public class YahtzeeScorer extends NofaKindScorer {
     public YahtzeeScorer() {
         super(5);
     }
+    @Override
     public int score(GameDice dice) {
         return (super.score(dice) > 0) ? 50 : 0;
     }

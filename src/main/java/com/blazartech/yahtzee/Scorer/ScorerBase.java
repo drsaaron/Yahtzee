@@ -11,12 +11,14 @@ import com.blazartech.yahtzee.GameDice;
 public class ScorerBase {
     public ScorerBase() {}
 
-    /** A simple method to sum all the dice. */
+    /** A simple method to sum all the dice.
+     * @param d
+     * @return  */
     public int sumAll(GameDice d) {
         int sum = 0;
         Die[] dice = d.getDice();
-        for (int i = 0; i < dice.length; i++) {
-            sum += dice[i].currValue();
+        for (Die dice1 : dice) {
+            sum += dice1.currValue();
         }
         return sum;
     }

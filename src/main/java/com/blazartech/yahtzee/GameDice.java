@@ -15,6 +15,7 @@ package com.blazartech.yahtzee;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 
 /** This class will store an array of Die object, representing the game
     dice for Yahtzee.  The object is derived from Panel, so the dice are
@@ -23,10 +24,10 @@ import java.awt.event.*;
 
 public class GameDice extends Panel {
     /** A random number generator. */
-    private static Random rgen = new Random();
+    private static final Random rgen = new Random();
 
     /** The dice. */
-    private Die[] dice;
+    private final Die[] dice;
 
     /** A constant to indicate how many dice there are. */
     private static final int NDICE = 5;
@@ -34,12 +35,14 @@ public class GameDice extends Panel {
     /** A thread that will roll the requested die a few times, giving the
         impression of a die actually rolling. */
     private class Roller extends Thread {
-        private Die die;
+        private final Die die;
         private final int NROLLS = 5;
         public Roller(Die d) {
             super();
             die = d;
         }
+        
+        @Override
         public void run() {
             for (int i = 0; i < NROLLS; i++) {
                 die.roll();
@@ -51,12 +54,14 @@ public class GameDice extends Panel {
     };
 
     /** An array of Roller objects, to roll each die. */
-    private Roller rollers[];
+    private final Roller rollers[];
 
     /** Current roll number. */
     private int roll_number;
 
-    /** Paint method. */
+    /** Paint method.
+     * @param g */
+    @Override
     public void paint(Graphics g) {
 	for (int i = 0; i < NDICE; i++) { dice[i].paint(g); }
     }
@@ -87,6 +92,7 @@ public class GameDice extends Panel {
         Button roll_button = new Button("roll");
         control_panel.add(roll_button);
         roll_button.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 roll();
             }
@@ -95,6 +101,7 @@ public class GameDice extends Panel {
         Button keep_button = new Button("keep all");
         control_panel.add(keep_button);
         keep_button.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 keepAll();
             }
@@ -103,6 +110,7 @@ public class GameDice extends Panel {
         Button clear_button = new Button("clear");
         control_panel.add(clear_button);
         clear_button.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 clearAll();
             }
@@ -156,17 +164,21 @@ public class GameDice extends Panel {
         roll();
     }
 
-    /** Get the raw array of dice. */
+    /** Get the raw array of dice.
+     * @return  */
     public Die[] getDice() { return dice; }
 
-    /** Get the keepers. */
+    /** Get the keepers.
+     * @return  */
     public Die[] getKeepers() {
-        Vector v = new Vector();
-        for (int i = 0; i < dice.length; i++) {
-            if (dice[i].is_keeper()) { v.addElement(dice[i]); }
+        List<Die> v = new ArrayList<>();
+        for (Die dice1 : dice) {
+            if (dice1.is_keeper()) {
+                v.add(dice1);
+            }
         }
         Die[] cpv = new Die[v.size()];
-        v.copyInto(cpv);
+        v.toArray(cpv);
         return cpv;
     }
 
