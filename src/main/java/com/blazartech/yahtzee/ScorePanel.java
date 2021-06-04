@@ -3,9 +3,12 @@
 
 package com.blazartech.yahtzee;
 
-import java.awt.*;
-import java.awt.event.*;
 import com.blazartech.yahtzee.Scorer.Scorer;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

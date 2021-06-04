@@ -3,7 +3,10 @@
  */
 package com.blazartech.yahtzee;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.util.Random;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -31,7 +34,7 @@ public class Die extends JPanel implements Comparable<Die> {
     /**
      * Represent a dot on a die.
      */
-    private class Dot extends Panel {
+    private class Dot extends JPanel {
 
         private boolean dstate;
 

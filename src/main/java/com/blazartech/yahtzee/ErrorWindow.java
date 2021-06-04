@@ -10,21 +10,26 @@ the label widget, and the label widget in the center of the dialog.
 
 package com.blazartech.yahtzee;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /** A simple error window. */
-public class ErrorWindow extends Dialog {
+public class ErrorWindow extends JDialog {
     public ErrorWindow(String message) {
-        super(new Frame(), "Error", true);
+        super(new JFrame(), "Error", true);
         setLayout(new BorderLayout());
 
         // Show the message.
-        Label text = new Label(message, Label.CENTER);
+        JLabel text = new JLabel(message, JLabel.CENTER);
         add(text, BorderLayout.CENTER);
 
         // Add an "OK" button.
-        Button ok = new Button("OK");
+        JButton ok = new JButton("OK");
         ok.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

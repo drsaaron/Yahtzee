@@ -12,10 +12,15 @@ Added the paint method.
 
 package com.blazartech.yahtzee;
 
-import java.util.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 

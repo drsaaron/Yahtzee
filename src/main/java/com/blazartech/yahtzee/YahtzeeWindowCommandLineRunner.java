@@ -6,6 +6,7 @@
 package com.blazartech.yahtzee;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import org.slf4j.Logger;
@@ -34,6 +35,10 @@ public class YahtzeeWindowCommandLineRunner implements CommandLineRunner {
         mainWindow.add(dice, BorderLayout.NORTH);
         mainWindow.add(scoreCard, BorderLayout.CENTER);
         mainWindow.pack();
-        mainWindow.setVisible(true);
+        
+        EventQueue.invokeLater(() -> {
+            mainWindow.setVisible(true);
+        });
+
     }
 }

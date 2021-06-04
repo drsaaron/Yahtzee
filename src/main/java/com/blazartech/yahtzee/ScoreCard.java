@@ -3,13 +3,14 @@
 
 package com.blazartech.yahtzee;
 
-import java.awt.*;
 import com.blazartech.yahtzee.Scorer.ChanceScorer;
 import com.blazartech.yahtzee.Scorer.FindAllScorer;
 import com.blazartech.yahtzee.Scorer.FullHouseScorer;
 import com.blazartech.yahtzee.Scorer.NofaKindScorer;
 import com.blazartech.yahtzee.Scorer.StraightScorer;
 import com.blazartech.yahtzee.Scorer.YahtzeeScorer;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -48,9 +49,9 @@ public class ScoreCard extends JPanel {
             }
 
             // Add a score line.
-            Panel score_panel = new Panel(); add(score_panel);
+            JPanel score_panel = new JPanel(); add(score_panel);
             score_panel.setLayout(new BorderLayout());
-            Label text = new Label("Score:"); score_panel.add(text, BorderLayout.WEST);
+            JLabel text = new JLabel("Score:"); score_panel.add(text, BorderLayout.WEST);
             score_display = new JLabel("0"); score_panel.add(score_display,
                                                             BorderLayout.EAST);
         }
@@ -122,7 +123,7 @@ public class ScoreCard extends JPanel {
     private final ScoreCardSection upper, lower;
 
     /** Label in which to display the total score. */
-    Label total_score_display;
+    JLabel total_score_display;
 
     // Constructor.
     public ScoreCard(GameDice dice) {
@@ -145,7 +146,7 @@ public class ScoreCard extends JPanel {
         JPanel score_panel = new JPanel(); add(score_panel, BorderLayout.SOUTH);
         JLabel score_label = new JLabel("Total score: ");
         score_panel.add(score_label);
-        total_score_display = new Label("000");
+        total_score_display = new JLabel("000");
         score_panel.add(total_score_display);
     }
 
