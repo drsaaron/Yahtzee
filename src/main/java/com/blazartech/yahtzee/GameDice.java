@@ -187,21 +187,9 @@ public class GameDice extends JPanel {
     /** Sort the dice in ascending order. */
     public void sort() { sort(dice); }
     public static void sort(Die[] d) {
-        /* Ideally we would use the Collections.sort method on a
-           Vector or some such, but that's not available for the
-           compiler I'm currently using (JDK 1.1.7), so for now, use
-           a brain dead bubble sort.  This should be OK since there
-           are only a few elements in the array.   Aesthetically,
-           an abomination. */
-        for (int i = 0; i < d.length; i++) {
-            for (int j = i + 1; j < d.length; j++) {
-                if (d[i].currValue() > d[j].currValue()) {
-                    Die temp = d[j];
-                    d[j] = d[i];
-                    d[i] = temp;
-                }
-            }
-        }
+        List<Die> dieList = Arrays.asList(d);
+        Collections.sort(dieList);
+        dieList.toArray(d); 
     }
 };
 

@@ -6,9 +6,6 @@
 package com.blazartech.yahtzee;
 
 import java.awt.BorderLayout;
-import java.awt.Frame;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import org.slf4j.Logger;
@@ -38,21 +35,5 @@ public class YahtzeeWindowCommandLineRunner implements CommandLineRunner {
         mainWindow.add(scoreCard, BorderLayout.CENTER);
         mainWindow.pack();
         mainWindow.setVisible(true);
-    }
-    
-    static class WindowCloseListener extends WindowAdapter {
-        
-        private final Frame mainWindow;
-
-        public WindowCloseListener(Frame mainWindow) {
-            this.mainWindow = mainWindow;
-        }
-
-        @Override
-        public void windowClosing(WindowEvent e) {
-            mainWindow.dispose();
-        }
-        
-        
     }
 }

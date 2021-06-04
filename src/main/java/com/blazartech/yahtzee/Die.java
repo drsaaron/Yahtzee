@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * will draw itself on the screen and make the value and whether or not it is a
  * keeper available.
  */
-public class Die extends JPanel {
+public class Die extends JPanel implements Comparable<Die> {
 
     // data.
     private final JPanel upper, lower;
@@ -22,6 +22,11 @@ public class Die extends JPanel {
     private final Dot dots[][] = new Dot[3][3];
     private final Random rgen;
     public final Color BGCOLOR = Color.white;
+
+    @Override
+    public int compareTo(Die arg0) {
+        return Integer.compare(value, arg0.value);
+    }
 
     /**
      * Represent a dot on a die.
@@ -126,6 +131,10 @@ public class Die extends JPanel {
         return value;
     }
 
+    public void setValue(int v) {
+        value = v;
+    }
+    
     /**
      * Draw the die.
      * @param g
