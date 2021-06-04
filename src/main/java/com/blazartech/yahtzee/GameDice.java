@@ -73,6 +73,8 @@ public class GameDice extends JPanel {
 	for (int i = 0; i < NDICE; i++) { dice[i].paint(g); }
     }
 
+    private JButton roll_button;
+    
     // Constructor.
     public GameDice() {
         super();
@@ -96,7 +98,7 @@ public class GameDice extends JPanel {
         }
 
         // Build the buttons.
-        JButton roll_button = new JButton("roll");
+        roll_button = new JButton("roll");
         control_panel.add(roll_button);
         roll_button.addMouseListener(new MouseAdapter() {
             @Override
@@ -148,6 +150,8 @@ public class GameDice extends JPanel {
                 rollers[i].join();
             } catch (InterruptedException e) {}
         }
+        
+        roll_button.setText("roll " + Integer.toString(roll_number));
     }
 
     /** Clear the status on all dice. */
