@@ -29,7 +29,11 @@ public class ScorePanel extends JPanel implements MouseListener {
     private final JLabel score_display;
 
     /** An internal reference to the game dice. */
-    private final GameDice dice;
+    private GameDice dice;
+    
+    public void setGameDice(GameDice dice) {
+        this.dice = dice;
+    }
 
     /** Each ScorePanel object is contained inside a ScoreCard.ScoreCardSection
         object.  Store a reference to this object so that when a score is taken,
@@ -40,14 +44,13 @@ public class ScorePanel extends JPanel implements MouseListener {
     private static final Font LABEL_FONT = new Font("Courier", Font.PLAIN, 10);
 
     // constructor.
-    public ScorePanel(String label, Scorer s, GameDice d, ScoreCard.ScoreCardSection sec) {
+    public ScorePanel(String label, Scorer s, ScoreCard.ScoreCardSection sec) {
         super();
 
         // initialize.
         score_entered = false;
         score = 0;
         scorer = s;
-        dice = d;
         section = sec;
 
         // Use a border layout.

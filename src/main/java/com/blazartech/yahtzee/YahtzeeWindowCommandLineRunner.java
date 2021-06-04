@@ -27,14 +27,7 @@ public class YahtzeeWindowCommandLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info("opening window");
 
-        JFrame mainWindow = new JFrame("Yahtzee");
-        mainWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        mainWindow.setLayout(new BorderLayout());
-        GameDice dice = new GameDice();
-        ScoreCard scoreCard = new ScoreCard(dice);
-        mainWindow.add(dice, BorderLayout.NORTH);
-        mainWindow.add(scoreCard, BorderLayout.CENTER);
-        mainWindow.pack();
+        JFrame mainWindow = new MainWindow();
         
         EventQueue.invokeLater(() -> {
             mainWindow.setVisible(true);
