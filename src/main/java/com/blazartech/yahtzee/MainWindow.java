@@ -6,6 +6,9 @@
 package com.blazartech.yahtzee;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -15,8 +18,19 @@ public class MainWindow extends JFrame {
 
     /**
      * Creates new form MainWindow
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.lang.InstantiationException
+     * @throws javax.swing.UnsupportedLookAndFeelException
+     * @throws java.lang.IllegalAccessException
      */
-    public MainWindow() {
+    public MainWindow() throws ClassNotFoundException, InstantiationException, UnsupportedLookAndFeelException, IllegalAccessException {
+        LookAndFeelInfo[] lafs = UIManager.getInstalledLookAndFeels();
+        for (LookAndFeelInfo i : lafs) {
+            if (i.getName().equals("Nimbus")) {
+                UIManager.setLookAndFeel(i.getClassName());
+            }
+        }
+
         initComponents();
         
         scoreCard1.setGameDice(gameDice1);

@@ -107,12 +107,13 @@ public class Die extends JPanel implements Comparable<Die> {
                 upper.add(dots[i][j]);
             }
         }
-        
+
     }
 
     /**
      * Is the die a keeper?
-     * @return 
+     *
+     * @return
      */
     public boolean is_keeper() {
         return cbox.isSelected();
@@ -120,6 +121,7 @@ public class Die extends JPanel implements Comparable<Die> {
 
     /**
      * Set the keeper status.
+     *
      * @param s
      */
     public void setStatus(boolean s) {
@@ -128,7 +130,8 @@ public class Die extends JPanel implements Comparable<Die> {
 
     /**
      * What is the current value?
-     * @return 
+     *
+     * @return
      */
     public int currValue() {
         return value;
@@ -137,9 +140,10 @@ public class Die extends JPanel implements Comparable<Die> {
     public void setValue(int v) {
         value = v;
     }
-    
+
     /**
      * Draw the die.
+     *
      * @param g
      */
     @Override
@@ -148,46 +152,45 @@ public class Die extends JPanel implements Comparable<Die> {
     }
 
     public void draw() {
-        if (this.isVisible()) {
-            // Clear the die display in the upper panel and redraw it.
-            Graphics gupper = upper.getGraphics();
-            Dimension supper = upper.getSize();
-            gupper.setColor(BGCOLOR);
-            gupper.clearRect(0, 0, supper.width, supper.height);
-            gupper.fillRect(0, 0, supper.width, supper.height);
+        // Clear the die display in the upper panel and redraw it.
+        Graphics gupper = upper.getGraphics();
+        Dimension supper = upper.getSize();
+        gupper.setColor(BGCOLOR);
+        gupper.clearRect(0, 0, supper.width, supper.height);
+        gupper.fillRect(0, 0, supper.width, supper.height);
 
-            // redraw the dots.
-            boolean flags[][] = new boolean[3][3];
-            switch (value) {
-                case 1:
+        // redraw the dots.
+        boolean flags[][] = new boolean[3][3];
+        switch (value) {
+            case 1:
+                flags[1][1] = true;
+                break;
+            case 2:
+            case 3:
+                flags[0][2] = flags[2][0] = true;
+                if (value == 3) {
                     flags[1][1] = true;
-                    break;
-                case 2:
-                case 3:
-                    flags[0][2] = flags[2][0] = true;
-                    if (value == 3) {
-                        flags[1][1] = true;
-                    }
-                    break;
-                case 4:
-                case 5:
-                    flags[0][0] = flags[2][2] = flags[0][2] = flags[2][0] = true;
-                    if (value == 5) {
-                        flags[1][1] = true;
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 3; i++) {
-                        flags[0][i] = flags[2][i] = true;
-                    }
-                    break;
-            }
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    dots[i][j].draw(flags[i][j]);
                 }
+                break;
+            case 4:
+            case 5:
+                flags[0][0] = flags[2][2] = flags[0][2] = flags[2][0] = true;
+                if (value == 5) {
+                    flags[1][1] = true;
+                }
+                break;
+            case 6:
+                for (int i = 0; i < 3; i++) {
+                    flags[0][i] = flags[2][i] = true;
+                }
+                break;
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                dots[i][j].draw(flags[i][j]);
             }
         }
+
     }
 
     /**
@@ -201,8 +204,9 @@ public class Die extends JPanel implements Comparable<Die> {
 
     /**
      * Equals operators.
+     *
      * @param d
-     * @return 
+     * @return
      */
     public boolean equals(Die d) {
         return currValue() == d.currValue();
